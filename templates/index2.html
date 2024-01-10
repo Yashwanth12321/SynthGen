@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>CSV File Display</title>
+    <!-- Include necessary CSS styles for the table -->
+    <!-- <link rel="stylesheet" href="preview.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <style>
+        *{
+            /* font-family: 'Monoton', sans-serif;
+            font-family: 'Noto Sans JP', sans-serif; */
+            font-family: monospace;
+        }
+        .center{  
+            width: 80%;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            overflow: scroll;
+            text-align: center;
+        }
+
+        .button {
+            margin-top: 100px;
+            /* Adjust the margin to your preference */
+        }
+        table{
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        th{
+            text-align: center;
+            padding: 8px;
+            color: #ff0000;
+            white-space: nowrap;
+        }
+
+        td{
+            padding: 8px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            color: #00ffd5;
+
+        }
+
+        h1 {
+            font-family: 'Monoton', sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 3rem;
+        }
+
+
+        .glow-on-hover {
+            width: 220px;
+            height: 50px;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:before {
+            content: '';
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:active {
+            color: #000
+        }
+
+        .glow-on-hover:active:after {
+            background: transparent;
+        }
+
+        .glow-on-hover:hover:before {
+            opacity: 1;
+        }
+
+        .glow-on-hover:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+
+        @keyframes glowing {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 400% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Preview</h1>
+    <div class="center">
+    <div class="container">
+        
+        <!-- Display the CSV content as an HTML table -->
+        {{ table_html | safe }}
+    </div>
+    </div>
+    <div>
+        <button type="button" class="glow-on-hover" onclick="downloadFile()">DOWNLOAD</button>
+    </div>
+
+    <script>
+
+        function downloadFile() {
+            // Replace 'your_download_url' with the actual URL for the file download.
+            window.location.href = "{{ url_for('download') }}";
+        }
+    </script>
+
+</body>
+
+</html>

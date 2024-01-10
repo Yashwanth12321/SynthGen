@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <title>Dynamic Dropdown Fields</title>
+    <style>
+        *{
+            font-family: 'Monoton', sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0F4C75;
+            font-size: 1.1rem;
+            color: #BBE1FA;
+        }
+        .attribute{
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+
+        .dark-input {
+            background-color: black;
+            /* Dark background color */
+            color: black;
+            /* Light text color */
+            border: 1px solid #555;
+            /* Dark border color */
+            padding: 5px;
+            /* Adjust padding to your preference */
+        }
+
+
+        .container {
+            width: 60%;
+            padding: 3%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1B262C;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            /* Initial shadow effect */
+
+
+            border: 5px solid transparent;
+            /* Set a transparent initial border */
+            border-image-slice: 1;
+            border-image-source: linear-gradient(90deg, #ff5733, #33b5e5, #00C851);
+            border-image-repeat: round;
+            animation: borderGradient 10s linear infinite;
+        }
+
+        @keyframes borderGradient {
+            0% {
+                border-image-source: linear-gradient(90deg, #ff5733, #33b5e5, #00C851);
+            }
+
+            25% {
+                border-image-source: linear-gradient(90deg, #33b5e5, #00C851, #ff5733);
+            }
+
+            50% {
+                border-image-source: linear-gradient(90deg, #00C851, #ff5733, #33b5e5);
+            }
+
+            75% {
+                border-image-source: linear-gradient(90deg, #ff5733, #33b5e5, #00C851);
+            }
+
+            100% {
+
+                border-image-source: linear-gradient(90deg, #33b5e5, #00C851, #ff5733);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                /* Shadow effect */
+            }
+        }
+
+        .head {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .static-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin-bottom: 2rem;
+        }
+
+        #inputContainer {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            display: inline-block;
+            width: 4.5rem;
+            font-weight: bold;
+
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 200px;
+            /* padding: 5px; */
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-right: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+        }
+
+        .glow-on-hover {
+
+            width: 220px;
+            font-size: large;
+            height: 50px;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+        }
+
+        .end {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .glow-on-hover:before {
+            content: '';
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:active {
+            color: #000
+        }
+
+        .glow-on-hover:active:after {
+            background: transparent;
+        }
+
+        .glow-on-hover:hover:before {
+            opacity: 1;
+        }
+
+        .glow-on-hover:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+
+        @keyframes glowing {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 400% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="head">
+            <h1>DATA GENERATION </h1>
+        </div>
+        <form action="#" method="post" id="inputForm">
+            <!-- Hidden input field to store the sequence order -->
+
+            <!-- Container to hold the dynamic dropdown fields -->
+            <div id="inputContainer">
+                <!-- Initial dropdown field with a unique class name -->
+                <div class="static-row">
+                    <label for="Number">Rows:</label>
+                    <input type="number" name="Number1" class="dark-mode" required>
+                    <!-- <button type="button" onclick="removeInput(this)">X</button> -->
+                </div>
+            </div>
+            <br>
+            <button type="button" onclick="addInput()">Add Dropdown Field</button>
+            <br><br>
+            <div class="end">
+                <button type="submit" value="Submit" class="glow-on-hover">Submit</button>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        let inputCount = 1;  // Initialize input count
+
+        // Function to add a new dropdown field
+        function addInput() {
+            const inputContainer = document.getElementById("inputContainer");
+            inputCount++;  // Increment input count
+
+            // Create a new dropdown field and buttons
+            const newInput = document.createElement("div");
+            newInput.innerHTML = `
+                <label for="Attribute_user">Text:</label>
+                <input type="text" name="Attribute_user" required>
+                <label for="Attribute" class="attribute">Attribute:</label>
+                <select name="Attribute" id="Attribute" required>
+                    <option value="name">Name</option>
+                    <option value="firstname">First Name</option>
+                    <option value="lastname">Last Name</option>
+                    <option value="email">Email</option>
+                    <option value="gender">Gender</option>
+
+                    <option value="rollnumber">Roll No.</option>
+
+                    <option value="department">Department</option>
+                    <option value="courses">Courses</option>
+
+                    <option value="admissiondate">Admission Date</option>
+                    <option value="year">Year</option>
+
+                    <option value="grade">Grade</option>
+                    <option value="residential">Residential/Hostel</option>
+
+                </select>
+                <button type="button" onclick="removeInput(this)">X</button>
+                <button type="button" onclick="moveRowUp(this)">Move Up</button>
+                <button type="button" onclick="moveRowDown(this)">Move Down</button>
+                
+            `;
+
+            // Append the new dropdown field to the container
+            inputContainer.appendChild(newInput);
+
+            // Update the sequence order hidden input field
+
+        }
+
+        // Function to remove a dropdown field
+        function removeInput(button) {
+            const inputContainer = document.getElementById("inputContainer");
+
+            // Check if the class name is "static-row" (the initial row)
+            if (button.parentNode.classList.contains("static-row")) {
+                return;  // Don't remove the initial row
+            }
+
+            // Remove the parent div containing the dropdown field and buttons
+            inputContainer.removeChild(button.parentNode);
+        }
+
+        // Function to move a row up
+        function moveRowUp(button) {
+            const parentDiv = button.parentNode;
+            const prevSibling = parentDiv.previousElementSibling;
+
+            if (prevSibling && !prevSibling.classList.contains("static-row")) {
+                parentDiv.parentNode.insertBefore(parentDiv, prevSibling);
+            }
+        }
+
+        // Function to move a row down
+        function moveRowDown(button) {
+            const parentDiv = button.parentNode;
+            const nextSibling = parentDiv.nextElementSibling;
+
+            if (nextSibling) {
+                parentDiv.parentNode.insertBefore(nextSibling, parentDiv);
+            }
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,197 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Monoton&family=Noto+Sans+JP&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-        *{
-            font-family: 'Monoton', sans-serif;
-            font-family: 'Noto Sans JP', sans-serif;
+      * {
+        font-family: "Monoton", sans-serif;
+        font-family: "Noto Sans JP", sans-serif;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #0f4c75;
+        font-size: 1.1rem;
+        color: #bbe1fa;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+      }
+      #container {
+        width: 30%;
+        padding: 3%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #1b262c;
+        border-radius: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        /* Initial shadow effect */
+
+        border: 5px solid transparent;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(90deg, #ff5733, #33b5e5, #00c851);
+        border-image-repeat: round;
+        animation: borderGradient 10s linear infinite;
+      }
+
+      @keyframes borderGradient {
+        0% {
+          border-image-source: linear-gradient(
+            90deg,
+            #ff5733,
+            #33b5e5,
+            #00c851
+          );
         }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0F4C75;
-            font-size: 1.1rem;
-            color: #BBE1FA;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            background: #000;
-        }
-        #container {
-            width: 30%;
-            padding: 3%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #1B262C;
-            border-radius: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            /* Initial shadow effect */
 
-
-            border: 5px solid transparent;
-            border-image-slice: 1;
-            border-image-source: linear-gradient(90deg, #ff5733, #33b5e5, #00C851);
-            border-image-repeat: round;
-            animation: borderGradient 10s linear infinite;
+        25% {
+          border-image-source: linear-gradient(
+            90deg,
+            #33b5e5,
+            #00c851,
+            #ff5733
+          );
         }
 
-        @keyframes borderGradient {
-            0% {
-                border-image-source: linear-gradient(90deg, #ff5733, #33b5e5, #00C851);
-            }
-
-            25% {
-                border-image-source: linear-gradient(90deg, #33b5e5, #00C851, #ff5733);
-            }
-
-            50% {
-                border-image-source: linear-gradient(90deg, #00C851, #ff5733, #33b5e5);
-            }
-
-            75% {
-                border-image-source: linear-gradient(90deg, #ff5733, #33b5e5, #00C851);
-            }
-
-            100% {
-
-                border-image-source: linear-gradient(90deg, #33b5e5, #00C851, #ff5733);
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-                /* Shadow effect */
-            }
+        50% {
+          border-image-source: linear-gradient(
+            90deg,
+            #00c851,
+            #ff5733,
+            #33b5e5
+          );
         }
-        .glow-on-hover {
 
-            width: 220px;
-            font-size: large;
-            height: 50px;
-            border: none;
-            outline: none;
-            color: #fff;
-            background: #111;
-            cursor: pointer;
-            position: relative;
-            z-index: 0;
-            border-radius: 10px;
-            }
+        75% {
+          border-image-source: linear-gradient(
+            90deg,
+            #ff5733,
+            #33b5e5,
+            #00c851
+          );
+        }
 
-            .end {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            }
+        100% {
+          border-image-source: linear-gradient(
+            90deg,
+            #33b5e5,
+            #00c851,
+            #ff5733
+          );
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          /* Shadow effect */
+        }
+      }
+      .glow-on-hover {
+        width: 220px;
+        font-size: large;
+        height: 50px;
+        border: none;
+        outline: none;
+        color: #fff;
+        background: #111;
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        border-radius: 10px;
+      }
 
-            .glow-on-hover:before {
-            content: '';
-            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            background-size: 400%;
-            z-index: -1;
-            filter: blur(5px);
-            width: calc(100% + 4px);
-            height: calc(100% + 4px);
-            animation: glowing 20s linear infinite;
-            opacity: 0;
-            transition: opacity .3s ease-in-out;
-            border-radius: 10px;
-            }
+      .end {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
 
-            .glow-on-hover:active {
-            color: #000
-            }
+      .glow-on-hover:before {
+        content: "";
+        background: linear-gradient(
+          45deg,
+          #ff0000,
+          #ff7300,
+          #fffb00,
+          #48ff00,
+          #00ffd5,
+          #002bff,
+          #7a00ff,
+          #ff00c8,
+          #ff0000
+        );
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing 20s linear infinite;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+      }
 
-            .glow-on-hover:active:after {
-            background: transparent;
-            }
+      .glow-on-hover:active {
+        color: #000;
+      }
 
-            .glow-on-hover:hover:before {
-            opacity: 1;
-            }
+      .glow-on-hover:active:after {
+        background: transparent;
+      }
 
-            .glow-on-hover:after {
-            z-index: -1;
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #111;
-            left: 0;
-            top: 0;
-            border-radius: 10px;
-            }
+      .glow-on-hover:hover:before {
+        opacity: 1;
+      }
 
-            @keyframes glowing {
-            0% {
-            background-position: 0 0;
-            }
+      .glow-on-hover:after {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #111;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+      }
 
-            50% {
-            background-position: 400% 0;
-            }
+      @keyframes glowing {
+        0% {
+          background-position: 0 0;
+        }
 
-            100% {
-            background-position: 0 0;
-            }
-            }
+        50% {
+          background-position: 400% 0;
+        }
 
-            .head{
-                display: flex;
-                justify-content: center;
-                margin-bottom: 30px;
-            }
-            #main{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .main-page{
-                margin-bottom: 30px;
-            }
-            
+        100% {
+          background-position: 0 0;
+        }
+      }
+
+      .head {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+      #main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .main-page {
+        margin-bottom: 30px;
+      }
     </style>
-</head>
+  </head>
 
-
-
-<body>
+  <body>
     <div id="container">
-        <div class="head">
-            <h1>Select your schema</h1>
+      <div class="head">
+        <h1>Welcome</h1>
+      </div>
+      <form action="#" method="post" id="main">
+        <div>
+          <div class="main-page">
+            <label for="schema" class="schema">Schema:</label>
+            <select name="schema" id="schema" required>
+              <option value="invoice">Invoice</option>
+              <option value="cardb">Car</option>
+              <option value="school">School</option>
+              <option value="employee">Employee</option>
+              <option value="employee">New</option>
+            </select>
+          </div>
         </div>
-        <form action="#" method="post" id="main">
-            <div>
-                <div class="main-page">
-                    <label for="schema" class="schema">Schema:</label>
-                    <select name="schema" id="schema" required>
-                        <option value="invoice">Invoice</option>
-                        <option value="cardb">Car</option>
-                        <option value="school">School</option>
-                        <option value="employee">Employee</option>
-                        <option value="employee">New</option>                        
-                    </select>
-                </div>
-            </div>
-            <button type="submit" value="Submit" class="glow-on-hover">Submit</button>
-        </form>
+        <button type="submit" value="Submit" class="glow-on-hover">
+          Submit
+        </button>
+      </form>
     </div>
-</body>
-
+  </body>
 </html>

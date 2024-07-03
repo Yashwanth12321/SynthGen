@@ -5,6 +5,20 @@ from main2 import  helloworld2
 from main3 import helloworld3
 from main4 import helloworld4
 app = Flask(__name__)
+import os
+
+
+
+
+# Load configuration based on environment
+environment = os.getenv('FLASK_ENV', 'development')
+if environment == 'development':
+    app.config.from_object('config.development')
+elif environment == 'testing':
+    app.config.from_object('config.testing')
+elif environment == 'production':
+    app.config.from_object('config.production')
+
 
 
 @app.route("/", methods = ["GET", "POST"])

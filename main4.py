@@ -5,6 +5,8 @@ import random
 import string
 import datetime
 import os
+
+a=2
 # from datetime import time
 fake = Faker('en_IN')
 
